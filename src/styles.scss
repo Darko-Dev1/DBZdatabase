@@ -1,0 +1,58 @@
+$primaryColor: #242424;
+$actionSection: black;
+
+%buttonsDesign {
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    z-index: 10000;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+$scalingSvgBtn: translate(-45%, -40%);
+
+.CharCard {
+
+    div:nth-child(1) button {
+        @extend %buttonsDesign;
+        height: 100%;
+    }
+
+    div:nth-child(1) {
+        z-index: 10000;
+    }
+
+    svg {
+        width: 50%;
+        height: 50%;
+        transition: 250ms;
+    }
+
+    div:nth-child(1):hover svg {
+        fill: red;
+        scale: 1.2;
+        transform: $scalingSvgBtn;
+    }
+
+}
+
+.ActionSection {
+    background-color: $actionSection;
+    @extend %buttonsDesign;
+    max-width: max-content;
+    animation: ActionNegative 500ms 1s linear;
+
+}
+
+@keyframes ActionNegative {
+    0% {
+        opacity: 100%;
+    } 100% {
+        opacity: 0%;
+    }
+}

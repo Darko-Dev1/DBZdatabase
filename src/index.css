@@ -54,7 +54,7 @@ body {
 
 }
 
-.CharCard div {
+.CharCard #DisplayNames {
   transform: translate(-50%, 0%);
   background-color: #213547c7;
 }

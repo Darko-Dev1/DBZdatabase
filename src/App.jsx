@@ -6,11 +6,12 @@ import Favorites from './pages/Favorites'
 import NavBar from './components/NavBar'
 import { Routes, Route  } from 'react-router-dom'
 
+
 const App = () => {
   return (
-    <>
-      <Home></Home>
-    </>
+    <Routes>
+      <Route path='/' element={<Home></Home>}></Route>
+    </Routes>
   )
 }
 
