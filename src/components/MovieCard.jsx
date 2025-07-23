@@ -34,7 +34,10 @@ const MovieCard = ({ movie }) => {
         setTabMessages(prev => {
             const newTabs = [...prev, msg];
 
-            const delay = 1000 
+            let delay = 300 *  messages.length
+            if (delay < 1000) {
+                delay = 2000
+            }
 
             setTimeout(() => {
                 setTabMessages(current => current.filter((_, i) => i !== 0));
