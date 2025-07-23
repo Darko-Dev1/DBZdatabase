@@ -30,16 +30,19 @@
 
 .ActionSection {
   background-color: black;
+  opacity: 0%;
   max-width: max-content;
-  animation: ActionNegative 500ms 1s linear;
+  animation: ActionNegative 1000ms 0s linear;
 }
 
 @keyframes ActionNegative {
   0% {
+    display: block;
     opacity: 100%;
   }
   100% {
     opacity: 0%;
+    display: none;
   }
 }
 
