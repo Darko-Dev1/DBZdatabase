@@ -31,10 +31,10 @@ const Home = () => {
         getData()
     }, []);
 
-
+    const [search, setSearch] = useState("");
 
     return (
-        <contextData.Provider value={{ dt: Data.items, load: loading}}>
+        <contextData.Provider value={{ dt: Data.items, load: loading, search, setSearch}}>
             <NavBar></NavBar>
             <MovieCard></MovieCard>
         </contextData.Provider>
