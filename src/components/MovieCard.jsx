@@ -11,11 +11,9 @@ import ActionTab from './ActionTab'
 // charater card not movie
 const MovieCard = () => {
 
-    const { dt, load, search, setSearch } = useContext(contextData)
+    const { dt, load, search, setSearch, liked, setLiked } = useContext(contextData)
     const [action, setAction] = useState(false)
     const [messages, setMessages] = useState("")
-    const [count, setCount] = useState(false)
-    const [counter, setCounter] = useState(0)
     const [tabMessages, setTabMessages] = useState([]);
 
     const handleMessage = (id) => {
@@ -25,37 +23,62 @@ const MovieCard = () => {
         })
         console.log(document.querySelector(".ActionTab"))
         return "You liked " + foundChar[0].name
+        
 
     }
 
-    const addTab = (msg) => {
+    const addFavorites = (newA) => {
+        const { id, name } = newA;
 
+        setLiked(prev => {
+            // Check if the item exists
+            const exists = prev.some(e => e.id === id);
+
+            if (exists) {
+                addTab("Removed from favorites")
+                return prev.filter(e => e.id !== id);
+            } else {
+
+                return [...prev, { id, name }];
+            }
+        });
+    };
+
+    const addTab = (msg) => {
         setTabMessages(prev => {
+            // If "no" is already in the tab list, don't add another
+            if (msg === "Removed from favorites" && prev.includes("Removed from favorites")) {
+                return prev; // skip adding duplicate "no"
+            }
+
             const newTabs = [...prev, msg];
 
-            let delay = 300 * messages.length
+            let delay = 300 * newTabs.length;
             if (delay < 1000) {
-                delay = 2000
+                delay = 2000;
             }
 
             setTimeout(() => {
-                setTabMessages(current => current.filter((_, i) => i !== 0));
+                setTabMessages(current => current.slice(1));
             }, delay);
 
             return newTabs;
         });
     };
+
     return (
         <>
             <div className='grid grid-cols-2 sm:grid-cols-3 sm:gap-20 gap-8 py-30 px-8'>
                 {!load ? dt.map((e) => {
+                    const id = e.id
+                    const name = e.name
+                    const together = { id: id, name: name }
 
-                    
                     if (search !== "") {
                         if (e.name.toLowerCase().includes(search.toLowerCase())) {
                             return (
                                 <div key={e.id} className='CharCard relative h-[300px]'>
-                                    <div className='h-10 flex absolute' onClick={(e) => { const newMessage = handleMessage(e.target.getAttribute("id")); setMessages(newMessage); setCount(true); setCounter(counter + 1); addTab(newMessage); }}>
+                                    <div className='h-10 flex absolute' onClick={(e) => { const newMessage = handleMessage(e.target.getAttribute("id")); setMessages(newMessage); addTab(newMessage); addFavorites(together); e.target.previousElementSibling.getAttribute("fill") === "red" ? e.target.previousElementSibling.setAttribute("fill", "currentColor") : e.target.previousElementSibling.setAttribute("fill", "red") }}>
                                         <div className='relative' title='like'>
                                             <FaRegHeart className='icons absolute'></FaRegHeart>
                                             <Buttons btn_atr="transparent" id={e.id}></Buttons>
@@ -68,12 +91,12 @@ const MovieCard = () => {
                                 </div>
                             )
                         } else {
-                            return 
+                            return
                         }
                     } else {
                         return (
                             <div key={e.id} className='CharCard relative h-[300px]'>
-                                <div className='h-10 flex absolute' onClick={(e) => { const newMessage = handleMessage(e.target.getAttribute("id")); setMessages(newMessage); setCount(true); setCounter(counter + 1); addTab(newMessage); }}>
+                                <div className='h-10 flex absolute' onClick={(e) => { const newMessage = handleMessage(e.target.getAttribute("id")); setMessages(newMessage); addTab(newMessage); }}>
                                     <div className='relative' title='like'>
                                         <FaRegHeart className='icons absolute'></FaRegHeart>
                                         <Buttons btn_atr="transparent" id={e.id}></Buttons>

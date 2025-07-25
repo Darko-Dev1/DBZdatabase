@@ -12,6 +12,25 @@ const Home = () => {
 
     const [loading, setLoading] = useState(true)
     const [Data, setData] = useState({})
+    const [liked, setLiked] = useState([])
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        console.log(liked)
+        const addedChars = []
+        liked.forEach((e) => {
+            addedChars.push(e.id)
+        })
+        console.log(addedChars)        
+        // liked.filter((e) => {
+
+        // })
+        const save = localStorage
+        save.setItem(liked, liked)
+        console.log(save.getItem(liked))
+        console.log(typeof(liked))
+
+    }, [liked])
 
 
     useEffect(() => {
@@ -34,7 +53,7 @@ const Home = () => {
     const [search, setSearch] = useState("");
 
     return (
-        <contextData.Provider value={{ dt: Data.items, load: loading, search, setSearch}}>
+        <contextData.Provider value={{ dt: Data.items, load: loading, search, setSearch, setLiked, liked}}>
             <NavBar></NavBar>
             <MovieCard></MovieCard>
         </contextData.Provider>
