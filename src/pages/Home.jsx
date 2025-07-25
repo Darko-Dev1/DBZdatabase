@@ -17,6 +17,7 @@ const Home = () => {
         JSON.parse(saved).forEach(element => {
             setTimeout(() => {
                 document.getElementById(element.id).previousElementSibling.setAttribute("fill", "red");
+                document.getElementById("favoriteCount").innerHTML = JSON.parse(saved).length
             }, 100);
         });
         return saved ? JSON.parse(saved) : [];
@@ -27,6 +28,7 @@ const Home = () => {
     // Save liked to localStorage on change
     useEffect(() => {
         localStorage.setItem("likedItems", JSON.stringify(liked));
+        document.getElementById("favoriteCount").innerHTML = liked.length
         console.log(liked)
     }, [liked]);
 
