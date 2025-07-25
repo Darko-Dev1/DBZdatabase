@@ -12,25 +12,24 @@ const Home = () => {
 
     const [loading, setLoading] = useState(true)
     const [Data, setData] = useState({})
-    const [liked, setLiked] = useState([])
+    const [liked, setLiked] = useState(() => {
+        const saved = localStorage.getItem("likedItems");
+        JSON.parse(saved).forEach(element => {
+            setTimeout(() => {
+                document.getElementById(element.id).previousElementSibling.setAttribute("fill", "red");
+            }, 100);
+        });
+        return saved ? JSON.parse(saved) : [];
+
+    });
     const [count, setCount] = useState(0)
-
+    const save = localStorage
+    // Save liked to localStorage on change
     useEffect(() => {
+        localStorage.setItem("likedItems", JSON.stringify(liked));
         console.log(liked)
-        const addedChars = []
-        liked.forEach((e) => {
-            addedChars.push(e.id)
-        })
-        console.log(addedChars)        
-        // liked.filter((e) => {
+    }, [liked]);
 
-        // })
-        const save = localStorage
-        save.setItem(liked, liked)
-        console.log(save.getItem(liked))
-        console.log(typeof(liked))
-
-    }, [liked])
 
 
     useEffect(() => {
@@ -53,7 +52,7 @@ const Home = () => {
     const [search, setSearch] = useState("");
 
     return (
-        <contextData.Provider value={{ dt: Data.items, load: loading, search, setSearch, setLiked, liked}}>
+        <contextData.Provider value={{ dt: Data.items, load: loading, search, setSearch, setLiked, liked }}>
             <NavBar></NavBar>
             <MovieCard></MovieCard>
         </contextData.Provider>

@@ -15,6 +15,7 @@ const MovieCard = () => {
     const [action, setAction] = useState(false)
     const [messages, setMessages] = useState("")
     const [tabMessages, setTabMessages] = useState([]);
+    
 
     const handleMessage = (id) => {
 
@@ -23,7 +24,7 @@ const MovieCard = () => {
         })
         console.log(document.querySelector(".ActionTab"))
         return "You liked " + foundChar[0].name
-        
+
 
     }
 
@@ -96,7 +97,7 @@ const MovieCard = () => {
                     } else {
                         return (
                             <div key={e.id} className='CharCard relative h-[300px]'>
-                                <div className='h-10 flex absolute' onClick={(e) => { const newMessage = handleMessage(e.target.getAttribute("id")); setMessages(newMessage); addTab(newMessage); }}>
+                                <div className='h-10 flex absolute' onClick={(e) => { const newMessage = handleMessage(e.target.getAttribute("id")); setMessages(newMessage); addTab(newMessage); addFavorites(together); e.target.previousElementSibling.getAttribute("fill") === "red" ? e.target.previousElementSibling.setAttribute("fill", "currentColor") : e.target.previousElementSibling.setAttribute("fill", "red") }}>
                                     <div className='relative' title='like'>
                                         <FaRegHeart className='icons absolute'></FaRegHeart>
                                         <Buttons btn_atr="transparent" id={e.id}></Buttons>
