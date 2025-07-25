@@ -1,4 +1,4 @@
-.ActionSection, .CharCard div:nth-child(1) button {
+.ActionSection, .CharCard div:nth-child(1) button, .HomeBtn div:nth-child(1) button {
   position: relative;
   border-radius: 8px;
   border: 1px solid transparent;
@@ -9,6 +9,29 @@
   z-index: 10000;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.HomeBtn div:nth-child(1) button {
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+.HomeBtn div:nth-child(1) {
+  z-index: 10000;
+}
+.HomeBtn svg {
+  width: 50%;
+  height: 50%;
+  transition: 250ms;
+}
+.HomeBtn div:nth-child(1):hover svg {
+  scale: 1.2;
+  transform: translate(-45%, -40%);
+}
+
+a {
+  color: white;
+  transition: 300ms;
 }
 
 .CharCard div:nth-child(1) button {

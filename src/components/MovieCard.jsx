@@ -7,6 +7,7 @@ import { contextData } from "../pages/Home"
 import Buttons from './Buttons'
 import { FaRegHeart } from "react-icons/fa";
 import ActionTab from './ActionTab'
+import { Link } from 'react-router-dom'
 
 // charater card not movie
 const MovieCard = () => {
@@ -15,7 +16,7 @@ const MovieCard = () => {
     const [action, setAction] = useState(false)
     const [messages, setMessages] = useState("")
     const [tabMessages, setTabMessages] = useState([]);
-    
+
 
     const handleMessage = (id) => {
 
@@ -32,14 +33,12 @@ const MovieCard = () => {
         const { id, name } = newA;
 
         setLiked(prev => {
-            // Check if the item exists
             const exists = prev.some(e => e.id === id);
 
             if (exists) {
-                addTab("Removed from favorites")
+                addTab("Removed from favorites");
                 return prev.filter(e => e.id !== id);
             } else {
-
                 return [...prev, { id, name }];
             }
         });
@@ -85,10 +84,13 @@ const MovieCard = () => {
                                             <Buttons btn_atr="transparent" id={e.id}></Buttons>
                                         </div>
                                     </div>
-                                    <img src={e.image} alt={e.name} className='absolute imgs ' />
-                                    <div id='DisplayNames' className='absolute left-[50%] top-[80%] w-full text-center h-[20%] z-40 flex items-center justify-center'>
-                                        <h1 className='text-2xl font-bold'>{e.name}</h1>
-                                    </div>
+                                    <Link to={`/char/${e.id}`}>
+                                        <img src={e.image} alt={e.name} className='absolute imgs ' />
+                                        <div id='DisplayNames' className='absolute left-[50%] top-[80%] w-full text-center h-[20%] z-40 flex items-center justify-center'>
+                                            <h1 className='text-2xl font-bold'>{e.name}</h1>
+                                        </div>
+                                    </Link>
+
                                 </div>
                             )
                         } else {
@@ -103,10 +105,12 @@ const MovieCard = () => {
                                         <Buttons btn_atr="transparent" id={e.id}></Buttons>
                                     </div>
                                 </div>
-                                <img src={e.image} alt={e.name} className='absolute imgs ' />
-                                <div id='DisplayNames' className='absolute left-[50%] top-[80%] w-full text-center h-[20%] z-40 flex items-center justify-center'>
-                                    <h1 className='text-2xl font-bold'>{e.name}</h1>
-                                </div>
+                                <Link to={`/char/${e.id}`}>
+                                    <img src={e.image} alt={e.name} className='absolute imgs ' />
+                                    <div id='DisplayNames' className='absolute left-[50%] top-[80%] w-full text-center h-[20%] z-40 flex items-center justify-center'>
+                                        <h1 className='text-2xl font-bold'>{e.name}</h1>
+                                    </div>
+                                </Link>
                             </div>
                         )
                     }

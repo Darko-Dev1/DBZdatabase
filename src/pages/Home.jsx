@@ -4,6 +4,7 @@ import MovieCard from '../components/MovieCard'
 import NavBar from '../components/NavBar'
 import { createContext } from 'react'
 import { useEffect } from 'react'
+import Info from './Info'
 
 
 export const contextData = createContext()

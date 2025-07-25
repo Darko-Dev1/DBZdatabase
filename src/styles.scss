@@ -16,6 +16,37 @@ $actionSection: black;
 
 $scalingSvgBtn: translate(-45%, -40%);
 
+.HomeBtn {
+
+    div:nth-child(1) button {
+        @extend %buttonsDesign;
+        height: 100%;
+        width: 100%;
+        outline: none;
+    }
+        div:nth-child(1) {
+        z-index: 10000;
+    }
+
+    svg {
+        width: 50%;
+        height: 50%;
+        transition: 250ms;
+    }
+
+    div:nth-child(1):hover svg {
+        scale: 1.2;
+        transform: $scalingSvgBtn;
+    }
+
+}
+
+a {
+    color: white;
+    transition: 300ms;
+    
+}
+
 .CharCard {
 
     div:nth-child(1) button {
