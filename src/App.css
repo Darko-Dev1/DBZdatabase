@@ -68,5 +68,19 @@ a {
     display: none;
   }
 }
+#presentation {
+  position: relative;
+  padding: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 800;
+}
+#presentation img {
+  width: 200px;
+}
+#presentation h1 {
+  font-size: larger;
+}
 
 /*# sourceMappingURL=App.css.map */
