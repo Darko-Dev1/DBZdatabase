@@ -9,6 +9,7 @@ import MovieCard from './MovieCard';
 import { contextData } from '../pages/Home';
 import { useContext } from 'react';
 
+
 const NavBar = () => {
 
   const { search, setSearch } = useContext(contextData)
@@ -28,11 +29,14 @@ const NavBar = () => {
           </div>
           <div className='pl-3 h-full relative'>
             <h3 id='favoriteCount' className='absolute left-[75%] -top-3 z-50 bg-black w-[48%] text-center rounded-4xl'>0</h3>
-            <div className='relative  h-full'>
-              <FaRegHeart className='icons absolute'></FaRegHeart>
-              <Buttons btn_atr={{ BackgroundC: "red" }}></Buttons>
-            </div>
+            <Link to="/favorite">
+              <div className='relative  h-full'>
+                <FaRegHeart className='icons absolute'></FaRegHeart>
+                <Buttons btn_atr={{ BackgroundC: "red" }}></Buttons>
+              </div>
+            </Link>
           </div>
+
         </div>
       </header>
     </>

@@ -90,7 +90,6 @@ const MovieCard = () => {
                                             <h1 className='text-2xl font-bold'>{e.name}</h1>
                                         </div>
                                     </Link>
-
                                 </div>
                             )
                         } else {
